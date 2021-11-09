@@ -1,0 +1,23 @@
+{
+  "name": "rmp-desktop",
+  "version": "1.0.0",
+  "description": "Programa para exibir medias remotamente",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghpm99/rmp-desktop.git"
+  },
+  "author": "Guilherme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghpm99/rmp-desktop/issues"
+  },
+  "homepage": "https://github.com/ghpm99/rmp-desktop#readme",
+  "devDependencies": {
+    "electron": "^15.3.1"
+  }
+}
