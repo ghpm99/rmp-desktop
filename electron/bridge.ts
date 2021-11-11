@@ -13,6 +13,10 @@ export const api = {
     ipcRenderer.send('message', message)
   },
 
+  sendCpu: () => {
+    ipcRenderer.send('cpu')
+  },
+
   /**
    * Provide an easier way to listen to events
    */

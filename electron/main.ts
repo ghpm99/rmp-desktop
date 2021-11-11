@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
+import os from 'os'
 
 let mainWindow: BrowserWindow | null
 
@@ -13,8 +14,9 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 function createWindow () {
   mainWindow = new BrowserWindow({
     // icon: path.join(assetsPath, 'assets', 'icon.png'),
-    width: 1100,
-    height: 700,
+    width: 1366,
+    height: 768,
+    minHeight:768,
     backgroundColor: '#191622',
     webPreferences: {
       nodeIntegration: false,
@@ -36,6 +38,10 @@ async function registerListeners () {
    */
   ipcMain.on('message', (_, message) => {
     console.log(message)
+  })
+
+  ipcMain.on('cpu', (_) => {
+    console.log(os.cpus())
   })
 }
 
