@@ -43,6 +43,11 @@ async function registerListeners () {
   ipcMain.on('cpu', (_) => {
     console.log(os.cpus())
   })
+
+  ipcMain.on('ram', (_) => {
+    console.log(os.freemem)
+  })
+
 }
 
 app.on('ready', createWindow)

@@ -1,34 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Clock from "../../components/Clock";
 import HardwareStatus from "../../components/HardwareStatus";
 import { Container, ContainerClock, ContainerStatus } from "./styles";
 
 export default function Idle() {
+
     const [state, setState] = useState({
         cpu: 0,
         ram: 0,
         currentTime: "00:00:00"
     });
 
+    console.log(state)
+
+    useEffect(() => {
+        const interval = setInterval(() => setState({
+            ...state,
+            currentTime: getCurrentTime()
+        }), 1000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
+
     return (
         <Container>
             <ContainerStatus>
                 <HardwareStatus
                     name={'CPU'}
-                    value={0}
-                    percentage={0.4}
+                    value={state.cpu}
+                    percentage={state.cpu}
                 />
             </ContainerStatus>
             <ContainerStatus>
                 <HardwareStatus
                     name={'RAM'}
-                    value={0}
-                    percentage={0.5}
+                    value={state.ram}
+                    percentage={state.ram}
                 />
             </ContainerStatus>
             <ContainerClock>
-                <Clock currentTime="23:02:54" />
+                <Clock currentTime={state.currentTime} />
             </ContainerClock>
         </Container>
     )
+}
+
+function getCurrentTime() {
+    const date = new Date()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const seconds = date.getSeconds()
+    return hour + ":" + minute + ":" + seconds
 }

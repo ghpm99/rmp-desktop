@@ -13,8 +13,12 @@ export const api = {
     ipcRenderer.send('message', message)
   },
 
-  sendCpu: () => {
+  cpuUsage: () => {
     ipcRenderer.send('cpu')
+  },
+
+  ramUsage: () => {
+    ipcRenderer.send('ram')
   },
 
   /**
