@@ -11,8 +11,6 @@ export default function Idle() {
         currentTime: "00:00:00"
     });
 
-    console.log(state)
-
     useEffect(() => {
         const interval = setInterval(() => setState({
             ...state,

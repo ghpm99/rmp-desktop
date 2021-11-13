@@ -18,8 +18,8 @@ function createWindow() {
     height: 768,
     minHeight: 768,
     backgroundColor: '#191622',
-    //fullscreen: true,
-    //autoHideMenuBar: true,
+    fullscreen: true,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
