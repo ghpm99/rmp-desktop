@@ -12,7 +12,7 @@ export default function HardwareStatus(props: HardwareStatusProps) {
         <Container>
             <ContainerStatus>
                 <Name>{props.name}</Name>
-                <Value>{props.value}</Value>
+                <Value>{props.value}%</Value>
             </ContainerStatus>
             {props.percentage &&
                 <Percentage value={props.percentage} max={100} />

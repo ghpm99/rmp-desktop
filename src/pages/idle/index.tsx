@@ -50,8 +50,9 @@ export default function Idle() {
 
 function getCurrentTime() {
     const date = new Date()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    const seconds = date.getSeconds()
-    return hour + ":" + minute + ":" + seconds
+    const hour = date.getHours().toLocaleString('pt-br', { minimumIntegerDigits: 2, useGrouping: false })
+    const minute = date.getMinutes().toLocaleString('pt-br', { minimumIntegerDigits: 2, useGrouping: false })
+    const seconds = date.getSeconds().toLocaleString('pt-br', { minimumIntegerDigits: 2, useGrouping: false })
+    const newCurrentTime = hour + ":" + minute + ":" + seconds
+    return newCurrentTime
 }

@@ -90,4 +90,6 @@ app.on('activate', () => {
   }
 })
 
-require('update-electron-app')()
+require('update-electron-app')({
+  notifyUser: false
+})
