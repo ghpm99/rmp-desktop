@@ -14,11 +14,11 @@ export const api = {
   },
 
   cpuUsage: () => {
-    ipcRenderer.send('cpu')
+    return ipcRenderer.sendSync('cpu')
   },
 
   ramUsage: () => {
-    ipcRenderer.send('ram')
+    return ipcRenderer.sendSync('ram')
   },
 
   /**

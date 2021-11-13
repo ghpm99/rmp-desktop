@@ -1,9 +1,13 @@
 {
-  "name": "electron-react-typescript",
-  "author": "Diego Fernandes <diego.schell.f@gmail.com>",
+  "name": "remote-media-player",
+  "author": "Guilherme Henrique <ghpm99@hotmail.com>",
   "version": "2.0.0",
-  "description": "An Electron boilerplate including TypeScript, React, Jest and ESLint.",
+  "description": "Um ",
   "main": "./.webpack/main/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghpm99/rmp-desktop"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -20,7 +24,8 @@
     "react-dom": "17.0.2",
     "react-hot-loader": "4.13.0",
     "react-pusher": "^0.2.0",
-    "styled-components": "5.3.0"
+    "styled-components": "5.3.0",
+    "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.14.6",
@@ -69,7 +74,7 @@
       "packagerConfig": {
         "name": "Electron starter",
         "executableName": "electron-starter",
-        "icon": "assets/icon",
+        "icon": "src/assets/icon",
         "extraResource": [
           "assets"
         ]

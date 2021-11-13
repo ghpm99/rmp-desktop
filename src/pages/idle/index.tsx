@@ -16,7 +16,9 @@ export default function Idle() {
     useEffect(() => {
         const interval = setInterval(() => setState({
             ...state,
-            currentTime: getCurrentTime()
+            cpu: window.Main.cpuUsage(),
+            ram: window.Main.ramUsage(),
+            currentTime: getCurrentTime(),
         }), 1000)
         return () => {
             clearInterval(interval)

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import backgroundGif from '../../assets/images/idle-background.gif'
+import backgroundGif from 'D:/Projetos/rmp-desktop/src/assets/images/idle-background.gif'
 
 export const Container = styled.div`
   background: url(${backgroundGif});
