@@ -21,12 +21,24 @@ export const api = {
     return ipcRenderer.sendSync('ram')
   },
 
+  caminhoMedias: () => {
+    return ipcRenderer.sendSync('caminhoMedias')
+  },
+
+  caminhoFundos: () => {
+    return ipcRenderer.sendSync('caminhoFundos')
+  },
+
+  imagensFundo: () => {
+    return ipcRenderer.sendSync('imagensFundo')
+  },
+
   /**
    * Provide an easier way to listen to events
    */
   on: (channel: string, callback: Function) => {
     ipcRenderer.on(channel, (_, data) => callback(data))
-  }
+  },
 }
 
 contextBridge.exposeInMainWorld('Main', api)

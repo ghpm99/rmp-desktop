@@ -1,8 +1,12 @@
+import React from 'react'
 import styled from 'styled-components'
-import backgroundGif from 'D:/Projetos/rmp-desktop/src/assets/images/idle-background.gif'
 
-export const Container = styled.div`
-  background: url(${backgroundGif});
+interface ContainerProps {
+  backgroundImage : string
+}
+
+export const Container = styled.div<ContainerProps>`
+  background: url(${props => props.backgroundImage});
   background-size: cover;
   height: 100vh;
 `

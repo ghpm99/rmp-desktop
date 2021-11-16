@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 import Clock from "../../components/Clock";
 import HardwareStatus from "../../components/HardwareStatus";
 import { Container, ContainerClock, ContainerStatus } from "./styles";
+import background1 from 'D:/Projetos/rmp-desktop/assets/fundo/209140.jpg'
 
 export default function Idle() {
+
+    let fundos: string[] = window.Main.imagensFundo()
 
     const [state, setState] = useState({
         cpu: 0,
         ram: 0,
         currentTime: "00:00:00"
     });
+
+    const [background, setBackground] = useState(
+        background1
+    )
 
     useEffect(() => {
         const interval = setInterval(() => setState({
@@ -23,8 +30,18 @@ export default function Idle() {
         }
     }, [])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            console.log(window.Main.caminhoFundos() + "/" + fundos[~~(Math.random() * fundos.length)])
+            setBackground(window.Main.caminhoFundos() + "/" + fundos[~~(Math.random() * fundos.length)])
+        }, 1000 * 60 * 60)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
+
     return (
-        <Container>
+        <Container backgroundImage={background}>
             <ContainerStatus>
                 <HardwareStatus
                     name={'CPU'}

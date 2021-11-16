@@ -1,5 +1,8 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, ipcRenderer } from 'electron'
 import os from 'os'
+import Store from 'electron-store'
+import { store } from '../src/store'
+import fs from 'fs'
 
 let mainWindow: BrowserWindow | null
 
@@ -21,15 +24,13 @@ function createWindow() {
     fullscreen: true,
     autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   })
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
-  mainWindow.on('closed', () => {
+  mainWindow.on('close', () => {
     mainWindow = null
   })
 }
@@ -70,6 +71,22 @@ async function registerListeners() {
 
     event.returnValue = percentageMemory
   })
+
+  ipcMain.on('caminhoMedias', event => {
+    event.returnValue = store.get('caminhoMedias')
+  })
+
+  ipcMain.on('caminhoFundos', event => {
+    let caminhoFundos = store.get('caminhoFundos') as string
+    event.returnValue = caminhoFundos
+  })
+
+  ipcMain.on('imagensFundo', event => {
+    let caminhoFundos = store.get('caminhoFundos') as string
+    let files = fs.readdirSync(caminhoFundos)
+    event.returnValue = files
+  })
+
 }
 
 app
@@ -90,6 +107,4 @@ app.on('activate', () => {
   }
 })
 
-require('update-electron-app')({
-  notifyUser: false
-})
+Store.initRenderer()

@@ -1,13 +1,6 @@
-import { GlobalStyle } from './styles/GlobalStyle'
-import { setPusherClient } from 'react-pusher'
-import Pusher from 'pusher-js'
+
 import Idle from './pages/idle';
-
-const pusherClient = new Pusher('d3b547054b245718cdcd', {
-  cluster: 'us2'
-});
-
-setPusherClient(pusherClient)
+import { GlobalStyle } from './styles/GlobalStyle';
 
 const pages : Array<Page> = [
   {name : 'idle', component : Idle}
@@ -15,7 +8,10 @@ const pages : Array<Page> = [
 
 const activePage = pages[0]
 
+const caminhoMedias = window.Main.caminhoMedias()
+
 export function App() {
+  console.log("caminho Medias" ,caminhoMedias)
   return (
     <>
       <GlobalStyle />
