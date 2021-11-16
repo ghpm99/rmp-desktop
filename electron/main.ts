@@ -108,3 +108,5 @@ app.on('activate', () => {
 })
 
 Store.initRenderer()
+
+require('update-electron-app')()

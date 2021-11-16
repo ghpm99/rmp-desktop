@@ -1,7 +1,7 @@
 {
   "name": "remote-media-player",
   "author": "Guilherme Henrique <ghpm99@hotmail.com>",
-  "version": "1.1.0",
+  "version": "2.1.0",
   "description": "Um painel para reproduzir medias remotamente",
   "main": "./.webpack/main/index.js",
   "repository": {
