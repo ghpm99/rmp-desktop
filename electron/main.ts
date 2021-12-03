@@ -1,8 +1,9 @@
-import { app, BrowserWindow, ipcMain, ipcRenderer } from 'electron'
-import os from 'os'
+import { app, BrowserWindow } from 'electron'
 import Store from 'electron-store'
 import { store } from '../src/store'
-import fs from 'fs'
+import localListeners from './Listeners/Local'
+import storeListeners from './Listeners/Store/index'
+import systemListeners from './Listeners/System'
 
 let mainWindow: BrowserWindow | null
 
@@ -21,8 +22,8 @@ function createWindow() {
     height: 768,
     minHeight: 768,
     backgroundColor: '#191622',
-    fullscreen: true,
-    autoHideMenuBar: true,
+    fullscreen: store.get('fullscreen') as boolean,
+    autoHideMenuBar: store.get('autoHideMenuBar') as boolean,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -39,53 +40,11 @@ async function registerListeners() {
   /**
    * This comes from bridge integration, check bridge.ts
    */
-  ipcMain.on('message', (_, message) => {
-    console.log(message)
-  })
+  systemListeners()
 
-  ipcMain.on('cpu', event => {
-    let cpus = os.cpus()
+  storeListeners()
 
-    let cpu = cpus
-      .map(cpu => cpu.times)
-      .reduce((prev, next) => ({
-        user: prev.user + next.user,
-        nice: prev.nice + next.nice,
-        sys: prev.sys + next.sys,
-        idle: prev.idle + next.idle,
-        irq: prev.irq + next.irq,
-      }))
-
-    let cpuUsage =
-      100 -
-      (cpu.idle / (cpu.irq + cpu.nice + cpu.sys + cpu.user + cpu.idle)) * 100
-
-    event.returnValue = Math.round(cpuUsage)
-  })
-
-  ipcMain.on('ram', event => {
-    let totalMemory: number = os.totalmem()
-    let freeMemory: number = os.freemem()
-    let usedMemory: number = totalMemory - freeMemory
-    let percentageMemory: number = ~~((usedMemory / totalMemory) * 100)
-
-    event.returnValue = percentageMemory
-  })
-
-  ipcMain.on('caminhoMedias', event => {
-    event.returnValue = store.get('caminhoMedias')
-  })
-
-  ipcMain.on('caminhoFundos', event => {
-    let caminhoFundos = store.get('caminhoFundos') as string
-    event.returnValue = caminhoFundos
-  })
-
-  ipcMain.on('imagensFundo', event => {
-    let caminhoFundos = store.get('caminhoFundos') as string
-    let files = fs.readdirSync(caminhoFundos)
-    event.returnValue = files
-  })
+  localListeners()
 
 }
 
@@ -101,12 +60,12 @@ app.on('window-all-closed', () => {
   }
 })
 
+Store.initRenderer()
+
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
 })
-
-Store.initRenderer()
 
 require('update-electron-app')()

@@ -1,17 +1,20 @@
 
+
 import Idle from './pages/idle';
+import { channel } from './services/socket';
 import { GlobalStyle } from './styles/GlobalStyle';
 
-const pages : Array<Page> = [
-  {name : 'idle', component : Idle}
-]
-
-const activePage = pages[0]
-
-const caminhoMedias = window.Main.caminhoMedias()
-
 export function App() {
-  console.log("caminho Medias" ,caminhoMedias)
+
+  const pages: Array<Page> = [
+    { name: 'idle', component: Idle }
+  ]
+  const activePage = pages[0]
+
+  channel.bind('mediafilesrequest', (data: any) => {
+    channel.emit('mediafilesresponse', window.Main.filesMedia())
+  })
+
   return (
     <>
       <GlobalStyle />

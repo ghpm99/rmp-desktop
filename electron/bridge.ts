@@ -33,6 +33,13 @@ export const api = {
     return ipcRenderer.sendSync('imagensFundo')
   },
 
+  webTokenKey: () => {
+    return ipcRenderer.sendSync('webTokenKey')
+  },
+
+  filesMedia: () => {
+    return ipcRenderer.sendSync('filesMedia')
+  },
   /**
    * Provide an easier way to listen to events
    */

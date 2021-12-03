@@ -32,7 +32,6 @@ export default function Idle() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            console.log(window.Main.caminhoFundos() + "/" + fundos[~~(Math.random() * fundos.length)])
             setBackground(window.Main.caminhoFundos() + "/" + fundos[~~(Math.random() * fundos.length)])
         }, 1000 * 60 * 60)
         return () => {

@@ -14,6 +14,14 @@ export const schema = {
     type: JSONSchemaType.String,
     default: '',
   },
+  fullscreen: {
+    type: JSONSchemaType.Boolean,
+    default: true,
+  },
+  autoHideMenuBar: {
+    type: JSONSchemaType.Boolean,
+    default: true,
+  },
 }
 
 export const store = new Store({ schema })
