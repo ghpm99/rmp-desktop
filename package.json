@@ -19,12 +19,14 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
+    "@types/node-fetch": "^3.0.3",
     "@vercel/webpack-asset-relocator-loader": "^1.7.0",
     "ajv": "^8.8.0",
     "crypto": "^1.0.1",
     "crypto-browserify": "^3.12.0",
     "electron-store": "^8.0.1",
     "fs": "^0.0.1-security",
+    "node-fetch": "^3.1.0",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "react": "17.0.2",
@@ -92,7 +94,7 @@
         [
           "@electron-forge/plugin-webpack",
           {
-            "devContentSecurityPolicy":"default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;",
+            "devContentSecurityPolicy": "default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;",
             "mainConfig": "./webpack/main.webpack.js",
             "renderer": {
               "config": "./webpack/renderer.webpack.js",

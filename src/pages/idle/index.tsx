@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Clock from "../../components/Clock";
 import HardwareStatus from "../../components/HardwareStatus";
 import { Container, ContainerClock, ContainerStatus } from "./styles";
-import background1 from 'D:/Projetos/rmp-desktop/assets/fundo/209140.jpg'
+import background1 from '../../assets/images/idle-background.gif'
 
 export default function Idle() {
 
-    let fundos: string[] = window.Main.imagensFundo()
+    const fundos: string[] = window.Main.imagensFundo()
 
     const [state, setState] = useState({
         cpu: 0,

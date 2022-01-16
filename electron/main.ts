@@ -1,9 +1,11 @@
 import { app, BrowserWindow } from 'electron'
 import Store from 'electron-store'
+import fetch, { RequestInit } from 'node-fetch'
 import { store } from '../src/store'
 import localListeners from './Listeners/Local'
 import storeListeners from './Listeners/Store/index'
 import systemListeners from './Listeners/System'
+
 
 let mainWindow: BrowserWindow | null
 
@@ -46,6 +48,22 @@ async function registerListeners() {
 
   localListeners()
 
+  notifyReady()
+}
+
+async function notifyReady() {
+
+  const init: RequestInit = {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    body: JSON.stringify({ "event": "Iniciou" })
+  }
+
+  fetch('http://localhost:8000/socket/event/', init).then(res => {
+    if(res.status === 201){
+      console.log(res.statusText)
+    }
+  })
 }
 
 app
