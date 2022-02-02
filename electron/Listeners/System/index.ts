@@ -3,9 +3,9 @@ import os from 'os'
 
 export default function systemListeners() {
   ipcMain.on('cpu', event => {
-    let cpus = os.cpus()
+    const cpus = os.cpus()
 
-    let cpu = cpus
+    const cpu = cpus
       .map(cpu => cpu.times)
       .reduce((prev, next) => ({
         user: prev.user + next.user,
@@ -15,7 +15,7 @@ export default function systemListeners() {
         irq: prev.irq + next.irq,
       }))
 
-    let cpuUsage =
+    const cpuUsage =
       100 -
       (cpu.idle / (cpu.irq + cpu.nice + cpu.sys + cpu.user + cpu.idle)) * 100
 
@@ -23,10 +23,10 @@ export default function systemListeners() {
   })
 
   ipcMain.on('ram', event => {
-    let totalMemory: number = os.totalmem()
-    let freeMemory: number = os.freemem()
-    let usedMemory: number = totalMemory - freeMemory
-    let percentageMemory: number = ~~((usedMemory / totalMemory) * 100)
+    const totalMemory: number = os.totalmem()
+    const freeMemory: number = os.freemem()
+    const usedMemory: number = totalMemory - freeMemory
+    const percentageMemory: number = ~~((usedMemory / totalMemory) * 100)
 
     event.returnValue = percentageMemory
   })

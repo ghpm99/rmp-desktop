@@ -1,5 +1,3 @@
-
-
 import { Page } from './@types/page';
 import Idle from './pages/idle';
 import Media from './pages/media';
